@@ -1,5 +1,5 @@
-C:\Users\amoik\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\223.8617.54\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/amoik/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/ninja/win/x64/ninja.exe -G Ninja -S C:\Users\amoik\Desktop\Graphico -B C:\Users\amoik\Desktop\Graphico\cmake-build-debug
+C:\Users\amoik\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\223.8617.54\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/amoik/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/ninja/win/x64/ninja.exe -G Ninja -S C:\Users\amoik\Desktop\project\graphico -B C:\Users\amoik\Desktop\project\graphico\cmake-build-debug
 -- Found SFML 2.5.1 in C:/sfml_clion/SFML32/lib/cmake/SFML
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/amoik/Desktop/Graphico/cmake-build-debug
+-- Build files have been written to: C:/Users/amoik/Desktop/project/graphico/cmake-build-debug

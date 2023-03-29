@@ -2,7 +2,7 @@
 #include "buttons.h"
 #include "tgraph.h"
 #include "sample.h"
-#include "dfs.h"
+#include "algos.h"
 
 void ButtonInteraction(sf::Vector2i &mousePosition,
                        TGraph &graph,
