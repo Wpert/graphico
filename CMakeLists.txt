@@ -3,7 +3,7 @@ project(Graphico)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Graphico main.cpp textbox.h dhilufdhufhh.cpp)
+add_executable(Graphico main.cpp textbox.h realisation.cpp)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/sfml_clion/SFML32/lib/cmake/SFML)
