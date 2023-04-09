@@ -7,7 +7,7 @@ int main() {
                                 sf::Style::Close);
     // icon settings
     sf::Image icon;
-    if (!icon.loadFromFile("C:\\Users\\amoik\\Desktop\\fav\\resources\\final_icon.png")) {
+    if (!icon.loadFromFile("C:/Users/amoik/Desktop/project/graphico/resources/final_icon.png")) {
         std::cout << "load icon error" << std::endl;
     }
     mainWindow.setIcon(32, 32, icon.getPixelsPtr());
