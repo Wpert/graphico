@@ -1,3 +1,0 @@
-C:/Users/amoik/Desktop/project/graphico/cmake-build-debug/CMakeFiles/Graphico.dir
-C:/Users/amoik/Desktop/project/graphico/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/amoik/Desktop/project/graphico/cmake-build-debug/CMakeFiles/rebuild_cache.dir
