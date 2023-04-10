@@ -1,7 +1,6 @@
 #include "buttons/gui.h"
 
 int main() {
-    sf::Color backgroundColor(19, 16, 15, 255);
     sf::RenderWindow mainWindow(sf::VideoMode(1024, 600),
                                 "Graphico",
                                 sf::Style::Close);
@@ -25,11 +24,12 @@ int main() {
 
     // objects
     sf::Vector2i mousePosition;
-    ButtonContainer buttons(buttonFont);
-    TGraph mainGraph;
-    mainGraph.AddVertex({400, 200}, vertexFont, 228);
-    TSample book;
 
+    ButtonContainer buttons(buttonFont);
+    TWorkArea graphWorkspace({220, 10}, {794, 580});
+
+    TGraph mainGraph;
+    TSample book;
     mainGraph = book.MakePentaGon(vertexFont);
 
     sf::Thread algoThread([&]() {
@@ -69,6 +69,7 @@ int main() {
 
         mainWindow.clear(backgroundColor);
 
+        graphWorkspace.Render(mainWindow, mainGraph);
         buttons.Render(mousePosition, mainWindow);
         mainGraph.RenderGraph(mousePosition, mainWindow);
 

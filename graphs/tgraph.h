@@ -75,6 +75,7 @@ public:
     void RenderGraph(sf::Vector2i &mousePosition, sf::RenderWindow &window);
 
     void changeVertexColor(size_t vertexIndex, sf::Color colorValue);
+    void AreaCollisions(sf::RectangleShape &area);
 
     void CleanGraph();
     void ClearGraph();
