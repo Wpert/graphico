@@ -6,9 +6,11 @@
 #include "../resources/tcolors.h"
 #include <iostream>
 #include <string>
+#include <cmath>
 
 class TGraph {
 private:
+//    const size_t MAX_VERTEX_COUNT = 70;
 
     class TVertex {
     private:
@@ -28,7 +30,7 @@ private:
         void Render(sf::Vector2i &mousePosition, sf::RenderWindow &window);
 
         void SetPosition(sf::Vector2i newPosition);
-        sf::Vector2f GetCenterPosition();
+        sf::Vector2f GetCenterPosition() const;
 
         bool CollisionCheck(TVertex &other);
 

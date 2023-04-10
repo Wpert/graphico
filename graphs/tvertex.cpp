@@ -23,8 +23,13 @@ TGraph::TVertex::TVertex(sf::Vector2f position, sf::Font &vertexFont, size_t num
 }
 
 bool TGraph::TVertex::Contains(sf::Vector2i &mousePosition) const {
-    auto tempPosition = static_cast<sf::Vector2f>(mousePosition);
-    return this->circle_.getGlobalBounds().contains(tempPosition);
+    auto centerPos = static_cast<sf::Vector2i>(this->GetCenterPosition());
+    // i need to calculate distance
+    sf::Vector2i vect(mousePosition.x - centerPos.x, mousePosition.y - centerPos.y);
+    double distance = std::sqrt(vect.x * vect.x + vect.y * vect.y);
+    double radius = this->circle_.getRadius();
+    // i dont need accuracy
+    return distance <= radius;
 }
 
 void TGraph::TVertex::Render(sf::Vector2i &mousePosition, sf::RenderWindow &window) {
@@ -44,7 +49,7 @@ void TGraph::TVertex::SetPosition(sf::Vector2i newPosition) {
     this->text_.setPosition(newPosition.x - 5, newPosition.y - 12);
 }
 
-sf::Vector2f TGraph::TVertex::GetCenterPosition() {
+sf::Vector2f TGraph::TVertex::GetCenterPosition() const {
     sf::Vector2f tempPosition = this->circle_.getPosition();
     tempPosition.x += 20;
     tempPosition.y += 20;
@@ -54,7 +59,13 @@ sf::Vector2f TGraph::TVertex::GetCenterPosition() {
 bool TGraph::TVertex::CollisionCheck(TVertex &other) {
     if (this->vertexNumber_ == other.vertexNumber_)
         return false;
-    return this->circle_.getGlobalBounds().intersects(other.circle_.getGlobalBounds());
+//    return this->circle_.getGlobalBounds().intersects(other.circle_.getGlobalBounds());
+    auto centerPos1 = this->GetCenterPosition();
+    auto centerPos2 = other.GetCenterPosition();
+    sf::Vector2f vect(centerPos2.x - centerPos1.x, centerPos2.y - centerPos1.y);
+    double dist = sqrt(vect.x * vect.x + vect.y * vect.y);
+
+    return dist < 2.0 * this->circle_.getRadius();
 }
 
 void TGraph::TVertex::changeOutlineColor(sf::Color colorValue) {

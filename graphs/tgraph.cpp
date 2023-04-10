@@ -70,19 +70,27 @@ void TGraph::MouseMoveVertex(sf::Vector2i &mousePosition) {
     }
 
     for (auto &firstVertex : this->vertexes_) {
+        // check if mouse moves it
         if (firstVertex.Contains(mousePosition)) {
             bool noCollisionFlag = true;
+
             for (auto &secondVertex : this->vertexes_) {
                 if (firstVertex.CollisionCheck(secondVertex)) {
                     noCollisionFlag = false;
-                    sf::Vector2f v1 = secondVertex.GetCenterPosition();
-                    sf::Vector2f v2 = firstVertex.GetCenterPosition();
-                    sf::Vector2f delta = v2 - v1;
-                    int kek = std::rand() % 5;
-                    delta = sf::Vector2f(delta.x / 3 + kek, delta.y / 3 + kek);
-                    firstVertex.SetPosition(sf::Vector2i(v2 + delta));
+                    sf::Vector2f centerPos2 = secondVertex.GetCenterPosition();
+                    sf::Vector2f centerPos1 = firstVertex.GetCenterPosition();
+                    sf::Vector2f delta = centerPos1 - centerPos2;
+
+                    if (fabs(delta.x) < 5 && fabs(delta.y) < 5) {
+                        sf::Vector2f epsilon(rand() % 10, rand() % 10);
+                        firstVertex.SetPosition( sf::Vector2i(centerPos1 + epsilon) );
+                        secondVertex.SetPosition( sf::Vector2i(centerPos2 - epsilon) );
+                    }
+                    else
+                        firstVertex.SetPosition(sf::Vector2i(centerPos1 + delta));
                 }
             }
+
             if (noCollisionFlag) {
                 firstVertex.SetPosition(mousePosition);
             }
