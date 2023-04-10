@@ -42,10 +42,10 @@ public:
     explicit ButtonContainer(sf::Font &buttonFont) {
         this->buttons_.emplace_back(sf::Vector2f(10, 10), sf::Vector2f(200, 30), "Add vertex", buttonFont);
         this->buttons_.emplace_back(sf::Vector2f(10, 45), sf::Vector2f(200, 30), "Add edge", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 80), sf::Vector2f(200, 30), "Clean graph", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 115), sf::Vector2f(200, 30), "Clear graph", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 150), sf::Vector2f(200, 30), "Start DFS", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 185), sf::Vector2f(200, 30), "Exit", buttonFont);
+        this->buttons_.emplace_back(sf::Vector2f(10, 115), sf::Vector2f(200, 30), "Clean graph", buttonFont);
+        this->buttons_.emplace_back(sf::Vector2f(10, 150), sf::Vector2f(200, 30), "Clear graph", buttonFont);
+        this->buttons_.emplace_back(sf::Vector2f(10, 185), sf::Vector2f(200, 30), "Start DFS", buttonFont);
+        this->buttons_.emplace_back(sf::Vector2f(10, 220), sf::Vector2f(200, 30), "Exit", buttonFont);
         this->buttons_.emplace_back(sf::Vector2f(10, 525), sf::Vector2f(200, 30), "Graph Pentagon", buttonFont);
         this->buttons_.emplace_back(sf::Vector2f(10, 560), sf::Vector2f(200, 30), "Graph Binary Tree", buttonFont);
     }

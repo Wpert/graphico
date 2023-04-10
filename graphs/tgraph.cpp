@@ -44,6 +44,26 @@ void TGraph::changeVertexColor(size_t vertexIndex, sf::Color colorValue) {
     this->vertexes_[vertexIndex].changeOutlineColor(colorValue);
 }
 
+void TGraph::AreaCollisions(sf::RectangleShape &area) {
+    int left_border = area.getGlobalBounds().left + 10;
+    int top_border = area.getGlobalBounds().top + 10;
+
+    int height = area.getGlobalBounds().height - 20;
+    int width = area.getGlobalBounds().width - 20;
+
+    for (auto &vertex : this->vertexes_) {
+        sf::Vector2f centerPos = vertex.GetCenterPosition();
+        if (centerPos.x < left_border || centerPos.x > left_border + width) {
+            float diff = ((int)centerPos.x - left_border) % width;
+            vertex.SetPosition({(int)(centerPos.x - 2.0 * diff), (int)centerPos.y});
+        }
+        if (centerPos.y < top_border || centerPos.y > top_border + height) {
+            float diff = ((int)centerPos.y - top_border) % height;
+            vertex.SetPosition({(int)centerPos.x, (int)(centerPos.y - 2.0 * diff)});
+        }
+    }
+}
+
 void TGraph::CleanGraph() {
     for (size_t i = 0; i < this->vertexes_.size(); ++i) {
         this->changeVertexColor(i, defaultOutlineColor);

@@ -39,3 +39,14 @@ void guiInteraction(sf::Vector2i &mousePosition, sf::RenderWindow &window,
         }
     }
 }
+
+TWorkArea::TWorkArea(sf::Vector2f pos, sf::Vector2f size) {
+    this->area_.setSize(size);
+    this->area_.setPosition(pos);
+    this->area_.setFillColor(vertexesAreaColor);
+}
+
+void TWorkArea::Render(sf::RenderWindow &window, TGraph &graph) {
+    graph.AreaCollisions(this->area_);
+    window.draw(this->area_);
+}
