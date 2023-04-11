@@ -9,10 +9,13 @@
 #include "../resources/tsample.h"
 #include "../resources/tcolors.h"
 #include "../algo/algos.h"
+#include "textbox.h"
 
 void guiInteraction(sf::Vector2i &mousePosition, sf::RenderWindow &window,
-                    TGraph &graph, sf::Font &vertexFont, sf::Thread &kek,
-                    ButtonContainer &buttons, TSample &book);
+                    TGraph &graph, sf::Font &vertexFont, sf::Thread &algoThread,
+                    size_t &startV,
+                    ButtonContainer &buttons, TSample &book,
+                    TextBoxContainer &textBoxes);
 
 class TWorkArea {
 private:

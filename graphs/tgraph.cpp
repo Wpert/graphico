@@ -117,25 +117,3 @@ void TGraph::MouseMoveVertex(sf::Vector2i &mousePosition) {
         }
     }
 }
-
-void TGraph::MouseAddEdge(sf::Vector2i &mousePosition) {
-    if (pickEdgeStage == 1) {
-        for (size_t i = 0; i < this->vertexes_.size(); ++i) {
-            if (this->vertexes_[i].Contains(mousePosition)) {
-                newFrom = (int) i;
-                pickEdgeStage = 2;
-            }
-        }
-    }
-    else if (pickEdgeStage == 2) {
-        for (size_t i = 0; i < this->vertexes_.size(); ++i) {
-            if (newFrom != (int) i && this->vertexes_[i].Contains(mousePosition)) {
-                newTo = (int) i;
-                this->AddEdge(TEdge(newFrom, newTo));
-                newTo = -1;
-                newFrom = -1;
-                pickEdgeStage = 0;
-            }
-        }
-    }
-}

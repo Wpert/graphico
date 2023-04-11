@@ -3,7 +3,7 @@ project(Graphico)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Graphico main.cpp buttons/tbuttons.cpp buttons/tbuttons.h resources/tcolors.h graphs/tvertex.cpp graphs/tgraph.h graphs/tgraph.cpp resources/tsample.h buttons/gui.cpp buttons/gui.h algo/algos.h algo/algos.cpp)
+add_executable(Graphico main.cpp buttons/tbuttons.cpp buttons/tbuttons.h resources/tcolors.h graphs/tvertex.cpp graphs/tgraph.h graphs/tgraph.cpp resources/tsample.h buttons/gui.cpp buttons/gui.h algo/algos.h algo/algos.cpp buttons/textbox.cpp buttons/textbox.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/sfml_clion/SFML32/lib/cmake/SFML)
