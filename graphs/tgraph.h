@@ -38,10 +38,10 @@ private:
     };
 
     struct TEdge {
-        int from_;
-        int to_;
+        size_t from_;
+        size_t to_;
 
-        TEdge(int from, int to) : from_(from)
+        TEdge(size_t from, size_t to) : from_(from)
                                 , to_(to) {}
 
         bool operator==(TEdge second) const {
@@ -83,8 +83,6 @@ public:
     std::vector<std::vector<int>> adjacencyList();
 
     void MouseMoveVertex(sf::Vector2i &mousePosition);
-    void MouseAddEdge(sf::Vector2i &mousePosition);
-    // the end
 };
 
 #endif //FAV_TGRAPH_H

@@ -1,4 +1,5 @@
 #include "buttons/gui.h"
+#include "buttons/textbox.h"
 
 int main() {
     sf::RenderWindow mainWindow(sf::VideoMode(1024, 600),
@@ -32,48 +33,59 @@ int main() {
     TSample book;
     mainGraph = book.MakePentaGon(vertexFont);
 
-    sf::Thread algoThread([&]() {
-        dfsAlgo alg;
-        alg.start(0, mainGraph);
-
-        std::cout << "Hello world!" << std::endl;
+    dfsAlgo alg;
+    // a "wheel", need to rewrite algos.h
+    size_t startV = 0;
+    sf::Thread algoThread([&]() -> void {
+        alg.start(startV, mainGraph);
     });
+
+    TextBoxContainer mainTextBox(buttonFont);
+
+    bool isWindowActive = true;
 
     // main cycle
     while (mainWindow.isOpen()) {
-
         sf::Event event;
         mousePosition = sf::Mouse::getPosition(mainWindow);
-
-
 
         while (mainWindow.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 mainWindow.close();
             }
             // quick time events as I got it right
-            if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.mouseButton.button == sf::Mouse::Left) {
-                    guiInteraction(mousePosition, mainWindow,
-                                  mainGraph, vertexFont, algoThread,
-                                  buttons, book);
+            mainTextBox.TakeInput(mousePosition, event);
 
-                    if (mainGraph.pickEdgeStage > 0) {
-                        mainGraph.MouseAddEdge(mousePosition);
-                    }
-                }
+            if (event.type == sf::Event::MouseButtonPressed &&
+                event.mouseButton.button == sf::Mouse::Left) {
+                guiInteraction(mousePosition, mainWindow,
+                               mainGraph, vertexFont, algoThread,
+                               startV,
+                               buttons, book, mainTextBox);
+            }
+
+            // closed or open
+            if (event.type == sf::Event::LostFocus) {
+                isWindowActive = false;
+            }
+            else if (event.type == sf::Event::GainedFocus) {
+                isWindowActive = true;
             }
         }
 
-        mainGraph.MouseMoveVertex(mousePosition);
+        if (isWindowActive) {
+            mainGraph.MouseMoveVertex(mousePosition);
 
-        mainWindow.clear(backgroundColor);
+            mainWindow.clear(backgroundColor);
+            graphWorkspace.Render(mainWindow, mainGraph);
 
-        graphWorkspace.Render(mainWindow, mainGraph);
-        buttons.Render(mousePosition, mainWindow);
-        mainGraph.RenderGraph(mousePosition, mainWindow);
+            mainTextBox.Render(mainWindow);
+            buttons.Render(mousePosition, mainWindow);
 
-        mainWindow.display();
+            mainGraph.RenderGraph(mousePosition, mainWindow);
+
+            mainWindow.display();
+        }
     }
 
     std::cout << "It works !! XD" << std::endl;

@@ -97,6 +97,14 @@ build CMakeFiles/Graphico.dir/algo/algos.cpp.obj: CXX_COMPILER__Graphico_Debug C
   OBJECT_DIR = CMakeFiles\Graphico.dir
   OBJECT_FILE_DIR = CMakeFiles\Graphico.dir\algo
 
+build CMakeFiles/Graphico.dir/buttons/textbox.cpp.obj: CXX_COMPILER__Graphico_Debug C$:/Users/amoik/Desktop/project/graphico/buttons/textbox.cpp || cmake_object_order_depends_target_Graphico
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Graphico.dir\buttons\textbox.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++1z
+  INCLUDES = -isystem C:/sfml_clion/SFML32/include
+  OBJECT_DIR = CMakeFiles\Graphico.dir
+  OBJECT_FILE_DIR = CMakeFiles\Graphico.dir\buttons
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Graphico
@@ -105,7 +113,7 @@ build CMakeFiles/Graphico.dir/algo/algos.cpp.obj: CXX_COMPILER__Graphico_Debug C
 #############################################
 # Link the executable Graphico.exe
 
-build Graphico.exe: CXX_EXECUTABLE_LINKER__Graphico_Debug CMakeFiles/Graphico.dir/main.cpp.obj CMakeFiles/Graphico.dir/buttons/tbuttons.cpp.obj CMakeFiles/Graphico.dir/graphs/tvertex.cpp.obj CMakeFiles/Graphico.dir/graphs/tgraph.cpp.obj CMakeFiles/Graphico.dir/buttons/gui.cpp.obj CMakeFiles/Graphico.dir/algo/algos.cpp.obj | C$:/sfml_clion/SFML32/lib/libsfml-graphics-s-d.a C$:/sfml_clion/SFML32/lib/libsfml-window-s-d.a C$:/sfml_clion/SFML32/lib/libsfml-system-s-d.a C$:/sfml_clion/SFML32/lib/libfreetype.a
+build Graphico.exe: CXX_EXECUTABLE_LINKER__Graphico_Debug CMakeFiles/Graphico.dir/main.cpp.obj CMakeFiles/Graphico.dir/buttons/tbuttons.cpp.obj CMakeFiles/Graphico.dir/graphs/tvertex.cpp.obj CMakeFiles/Graphico.dir/graphs/tgraph.cpp.obj CMakeFiles/Graphico.dir/buttons/gui.cpp.obj CMakeFiles/Graphico.dir/algo/algos.cpp.obj CMakeFiles/Graphico.dir/buttons/textbox.cpp.obj | C$:/sfml_clion/SFML32/lib/libsfml-graphics-s-d.a C$:/sfml_clion/SFML32/lib/libsfml-window-s-d.a C$:/sfml_clion/SFML32/lib/libsfml-system-s-d.a C$:/sfml_clion/SFML32/lib/libfreetype.a
   FLAGS = -g
   LINK_LIBRARIES = C:/sfml_clion/SFML32/lib/libsfml-graphics-s-d.a  C:/sfml_clion/SFML32/lib/libsfml-window-s-d.a  C:/sfml_clion/SFML32/lib/libsfml-system-s-d.a  -lwinmm  -lgdi32  -lOpenGL32  C:/sfml_clion/SFML32/lib/libfreetype.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Graphico.dir
