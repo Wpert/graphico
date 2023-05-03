@@ -1,4 +1,4 @@
-ToolSet: w64 6.0 (local)@C:\sfml_clion\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32
+ToolSet: w64 9.0 (local)@C:\Users\amori\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\231.8109.222\bin\mingw
 Options: 
 
-Options:-DCMAKE_MAKE_PROGRAM=C:/Users/amoik/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/ninja/win/x64/ninja.exe
+Options:
