@@ -1,13 +1,26 @@
 #include "buttons/gui.h"
 #include "buttons/textbox.h"
 
+std::string getDirPath() {
+    std::string path(__FILE__);
+    path = path.substr(0, path.rfind('\\') + 1);
+    for (auto &chr : path) {
+        if (chr == '\\')
+            chr = '/';
+    }
+    return path;
+}
+
 int main() {
     sf::RenderWindow mainWindow(sf::VideoMode(1024, 600),
                                 "Graphico",
                                 sf::Style::Close);
+
+    std::string dirPath = getDirPath();
+
     // icon settings
     sf::Image icon;
-    if (!icon.loadFromFile("C:/Users/amoik/Desktop/project/graphico/resources/final_icon.png")) {
+    if (!icon.loadFromFile(dirPath + "resources/final_icon.png")) {
         std::cout << "load icon error" << std::endl;
     }
     mainWindow.setIcon(32, 32, icon.getPixelsPtr());
@@ -19,9 +32,9 @@ int main() {
 
 
     sf::Font buttonFont;
-    buttonFont.loadFromFile("C:/Windows/Fonts/Calibri.ttf");
+    buttonFont.loadFromFile(dirPath + "resources/calibri.ttf");
     sf::Font vertexFont;
-    vertexFont.loadFromFile("C:/Windows/Fonts/Calibri.ttf");
+    vertexFont.loadFromFile(dirPath + "resources/calibri.ttf");
 
     // objects
     sf::Vector2i mousePosition;
@@ -34,7 +47,7 @@ int main() {
     mainGraph = book.MakePentaGon(vertexFont);
 
     dfsAlgo alg;
-    // a "wheel", need to rewrite algos.h
+    // a "bicycle", I need to rewrite algos.h
     size_t startV = 0;
     sf::Thread algoThread([&]() -> void {
         alg.start(startV, mainGraph);
@@ -88,6 +101,6 @@ int main() {
         }
     }
 
-    std::cout << "It works !! XD" << std::endl;
+    std::cout << "my work here is done." << std::endl;
     return 0;
 }
