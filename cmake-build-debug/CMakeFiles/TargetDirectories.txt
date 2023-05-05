@@ -1,3 +1,0 @@
-F:/hybrid projects/graphico/cmake-build-debug/CMakeFiles/Graphico.dir
-F:/hybrid projects/graphico/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/hybrid projects/graphico/cmake-build-debug/CMakeFiles/rebuild_cache.dir

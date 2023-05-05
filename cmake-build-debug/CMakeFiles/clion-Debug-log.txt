@@ -1,5 +1,0 @@
-C:\Users\amori\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\231.8109.222\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S "F:\hybrid projects\graphico" -B "F:\hybrid projects\graphico\cmake-build-debug"
--- Found SFML 2.5.1 in C:/cpp/sfml/SFML-2.5.1/lib/cmake/SFML
--- Configuring done
--- Generating done
--- Build files have been written to: F:/hybrid projects/graphico/cmake-build-debug
