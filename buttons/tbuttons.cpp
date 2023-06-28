@@ -3,7 +3,8 @@
 Button::Button(sf::Vector2f position,
                sf::Vector2f size,
                std::string text,
-               sf::Font &buttonFont) {
+               sf::Font &buttonFont,
+               size_t number) {
     this->box_.setSize(size);
 
     {
@@ -19,6 +20,8 @@ Button::Button(sf::Vector2f position,
     this->text_.setFont(buttonFont);
 
     this->text_.setString(text);
+
+    this->enumNumber_ = number;
 }
 
 bool Button::Contains(sf::Vector2i &mousePosition) const {
@@ -27,6 +30,7 @@ bool Button::Contains(sf::Vector2i &mousePosition) const {
 }
 
 void Button::Render(sf::Vector2i &mousePosition, sf::RenderWindow &window) {
+
     if (this->Contains(mousePosition)) {
         this->box_.setFillColor(activeButtonColor);
     }

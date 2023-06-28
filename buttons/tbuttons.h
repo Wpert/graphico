@@ -5,17 +5,21 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "../resources/tcolors.h"
+#include <mutex>
+#include <shared_mutex>
 
 class Button {
 private:
     sf::RectangleShape box_;
     sf::Text text_;
-
 public:
+    size_t enumNumber_;
+
     Button(sf::Vector2f position,
            sf::Vector2f size,
            std::string text,
-           sf::Font &buttonFont);
+           sf::Font &buttonFont,
+           size_t number);
     ~Button() {
 //        std::cout << "button has destroyed" << std::endl;
     }
@@ -36,18 +40,19 @@ enum ButtonActions{
 };
 
 class ButtonContainer {
+    mutable std::shared_mutex buttonMtx_;
 public:
     std::vector<Button> buttons_;
 
     explicit ButtonContainer(sf::Font &buttonFont) {
-        this->buttons_.emplace_back(sf::Vector2f(10, 10), sf::Vector2f(200, 30), "Add vertex", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 45), sf::Vector2f(200, 30), "Add edge", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 115), sf::Vector2f(200, 30), "Clean graph", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 150), sf::Vector2f(200, 30), "Clear graph", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 185), sf::Vector2f(200, 30), "Start DFS", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 255), sf::Vector2f(200, 30), "Exit", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 525), sf::Vector2f(200, 30), "Graph Pentagon", buttonFont);
-        this->buttons_.emplace_back(sf::Vector2f(10, 560), sf::Vector2f(200, 30), "Graph Binary Tree", buttonFont);
+        this->buttons_.emplace_back(sf::Vector2f(10, 10), sf::Vector2f(200, 30), "Add vertex", buttonFont, ADD_VERTEX);
+        this->buttons_.emplace_back(sf::Vector2f(10, 45), sf::Vector2f(200, 30), "Add edge", buttonFont, ADD_EDGE);
+        this->buttons_.emplace_back(sf::Vector2f(10, 115), sf::Vector2f(200, 30), "Clean graph", buttonFont, CLEAN_GRAPH);
+        this->buttons_.emplace_back(sf::Vector2f(10, 150), sf::Vector2f(200, 30), "Clear graph", buttonFont, CLEAR_GRAPH);
+        this->buttons_.emplace_back(sf::Vector2f(10, 185), sf::Vector2f(200, 30), "Start DFS", buttonFont, START_DFS);
+        this->buttons_.emplace_back(sf::Vector2f(10, 255), sf::Vector2f(200, 30), "Exit", buttonFont, EXIT);
+        this->buttons_.emplace_back(sf::Vector2f(10, 525), sf::Vector2f(200, 30), "Graph Pentagon", buttonFont, GRAPH_PNTGON);
+        this->buttons_.emplace_back(sf::Vector2f(10, 560), sf::Vector2f(200, 30), "Graph Binary Tree", buttonFont, GRAPH_BNTREE);
     }
 
     size_t GetSize();

@@ -57,9 +57,6 @@ private:
     std::vector<TEdge> edgeList_;
     std::vector<TVertex> vertexes_;
 public:
-    int pickEdgeStage = 0;
-    int newFrom = -1;
-    int newTo = -1;
 
     TGraph() = default;
     ~TGraph() = default;
