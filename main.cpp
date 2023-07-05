@@ -29,7 +29,7 @@ int main() {
     // other settings
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    mainWindow.setFramerateLimit(120);
+    mainWindow.setFramerateLimit(60);
 
     sf::Font font;
     font.loadFromFile(dirPath + "resources/calibri.ttf");
@@ -37,27 +37,20 @@ int main() {
     // objects
     TLogic mainK(font);
 
-    dfsAlgo alg;
-//     a "bicycle", I need to rewrite algos.h
-    size_t startV = 0;
-    sf::Thread algoThread([&]() -> void {
-        alg.start(startV, mainK.mainGraph_);
-    });
-
-    std::thread takeMPos([&](){
+    std::thread takeMousePos([&](){
         while (mainWindow.isOpen())
             mainK.TakeMousePosition(mainWindow);
     });
 
     // main cycle
     while (mainWindow.isOpen()) {
-        // user device response
-        mainK.ReadInputs(mainWindow, algoThread, startV);
+        // user devices
+        mainK.ReadInputs(mainWindow);
         // rendering
         mainK.Render(mainWindow);
     }
 
-    takeMPos.join();
+    takeMousePos.join();
     std::cout << "my work here is done." << std::endl;
     return 0;
 }

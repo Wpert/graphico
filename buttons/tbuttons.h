@@ -34,9 +34,11 @@ enum ButtonActions{
     CLEAN_GRAPH = 2,
     CLEAR_GRAPH = 3,
     START_DFS = 4,
-    EXIT = 5,
-    GRAPH_PNTGON = 6,
-    GRAPH_BNTREE = 7
+    START_BFS = 5,
+    EXIT = 6,
+    GRAPH_COMPLEX = 7,
+    GRAPH_PNTGON = 8,
+    GRAPH_BNTREE = 9
 };
 
 class ButtonContainer {
@@ -49,8 +51,13 @@ public:
         this->buttons_.emplace_back(sf::Vector2f(10, 45), sf::Vector2f(200, 30), "Add edge", buttonFont, ADD_EDGE);
         this->buttons_.emplace_back(sf::Vector2f(10, 115), sf::Vector2f(200, 30), "Clean graph", buttonFont, CLEAN_GRAPH);
         this->buttons_.emplace_back(sf::Vector2f(10, 150), sf::Vector2f(200, 30), "Clear graph", buttonFont, CLEAR_GRAPH);
-        this->buttons_.emplace_back(sf::Vector2f(10, 185), sf::Vector2f(200, 30), "Start DFS", buttonFont, START_DFS);
-        this->buttons_.emplace_back(sf::Vector2f(10, 255), sf::Vector2f(200, 30), "Exit", buttonFont, EXIT);
+
+        this->buttons_.emplace_back(sf::Vector2f(10, 220), sf::Vector2f(200, 30), "Start DFS", buttonFont, START_DFS);
+        this->buttons_.emplace_back(sf::Vector2f(10, 255), sf::Vector2f(200, 30), "Start BFS", buttonFont, START_BFS);
+
+        this->buttons_.emplace_back(sf::Vector2f(10, 360), sf::Vector2f(200, 30), "Exit", buttonFont, EXIT);
+
+        this->buttons_.emplace_back(sf::Vector2f(10, 490), sf::Vector2f(200, 30), "Graph Complex", buttonFont, GRAPH_COMPLEX);
         this->buttons_.emplace_back(sf::Vector2f(10, 525), sf::Vector2f(200, 30), "Graph Pentagon", buttonFont, GRAPH_PNTGON);
         this->buttons_.emplace_back(sf::Vector2f(10, 560), sf::Vector2f(200, 30), "Graph Binary Tree", buttonFont, GRAPH_BNTREE);
     }

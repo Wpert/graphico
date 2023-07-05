@@ -31,14 +31,14 @@ public:
     explicit TextBoxContainer(sf::Font &buttonFont) {
         this->textboxes_.emplace_back(sf::Vector2f(65, 80), sf::Vector2f(45, 30), buttonFont);
         this->textboxes_.emplace_back(sf::Vector2f(165, 80), sf::Vector2f(45, 30), buttonFont);
-        this->textboxes_.emplace_back(sf::Vector2f(165, 220), sf::Vector2f(45, 30), buttonFont);
+        this->textboxes_.emplace_back(sf::Vector2f(165, 290), sf::Vector2f(45, 30), buttonFont);
 
         sf::Text textAddEdgeFrom("From:", buttonFont, 18);
         textAddEdgeFrom.setPosition({10 + 5, 80 + 5});
         sf::Text textAddEdgeTo("To:", buttonFont, 18);
         textAddEdgeTo.setPosition({115 + 5, 80 + 5});
         sf::Text textDFSFrom("From:", buttonFont, 18);
-        textDFSFrom.setPosition({10 + 5, 220 + 5});
+        textDFSFrom.setPosition({10 + 5, 290 + 5});
 
         this->names_.push_back(textAddEdgeFrom);
         this->names_.push_back(textAddEdgeTo);

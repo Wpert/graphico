@@ -40,9 +40,12 @@ private:
     struct TEdge {
         size_t from_;
         size_t to_;
+        sf::Color color_;
 
-        TEdge(size_t from, size_t to) : from_(from)
-                                , to_(to) {}
+        TEdge(size_t from, size_t to)
+        : from_(from)
+        , to_(to)
+        , color_(defaultEdgeColor) {}
 
         bool operator==(TEdge second) const {
             return (this->from_ == second.from_ && this->to_ == second.to_) ||
@@ -72,6 +75,8 @@ public:
     void RenderGraph(sf::Vector2i &mousePosition, sf::RenderWindow &window);
 
     void changeVertexColor(size_t vertexIndex, sf::Color colorValue);
+    void changeEdgeColor(size_t from, size_t to, sf::Color colorValue);
+
     void AreaCollisions(sf::RectangleShape &area);
 
     void CleanGraph();

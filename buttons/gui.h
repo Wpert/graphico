@@ -10,7 +10,7 @@
 #include "../resources/tcolors.h"
 #include "../algo/algos.h"
 #include "textbox.h"
-#include <thread>
+#include "../bs_threadpool//BS_thread_pool_light.hpp"
 
 class TWorkArea {
 private:
@@ -27,13 +27,13 @@ public:
 
     void Render(sf::RenderWindow &mainWindow);
 
-    void ReadInputs(sf::RenderWindow &mainWindow, sf::Thread &algoThread, size_t &startV);
+    void ReadInputs(sf::RenderWindow &mainWindow);
 
     void TakeMousePosition(sf::RenderWindow &mainWindow);
 
     TGraph mainGraph_;
 private:
-    void guiInteraction(sf::RenderWindow &window, sf::Thread &algoThread, size_t &startV, Button &button);
+    void guiInteraction(sf::RenderWindow &window, Button &button);
 
     bool isMainWindowActive_ = true;
 
@@ -43,5 +43,8 @@ private:
     TextBoxContainer textBoxes_;
     TWorkArea graphWorkspace_;
     TSample graphSamples_;
+
+    TAlgo alg_;
+    BS::thread_pool_light threadPool_;
 };
 #endif //FAV_GUI_H
