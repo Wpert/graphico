@@ -12,16 +12,21 @@ void TWorkArea::Render(sf::RenderWindow &window, TGraph &graph) {
 }
 
 TLogic::TLogic(sf::Font font)
-        : mainFont_(font), buttons_(mainFont_),
-          graphWorkspace_({220, 10}, {794, 580}),
-          textBoxes_(mainFont_) {
+        : mainFont_(font)
+        , buttons_(mainFont_)
+        , graphWorkspace_({220, 10}
+        , {794, 580})
+        , textBoxes_(mainFont_)
+        , threadPool_(1) {
     this->mainGraph_ = graphSamples_.MakeBinaryTree(mainFont_);
 }
 
-void TLogic::guiInteraction(sf::RenderWindow &window, sf::Thread &algoThread, size_t &startV, Button &button) {
+void TLogic::guiInteraction(sf::RenderWindow &window, Button &button) {
     switch (button.enumNumber_) {
         case ButtonActions::ADD_VERTEX:
+        {
             mainGraph_.AddVertex(sf::Vector2f(512, 300), mainFont_, mainGraph_.GetVertexesSize());
+        }
             break;
         case ButtonActions::ADD_EDGE:
             if ( !textBoxes_.textboxes_[TextBoxes::ADD_EDGE_FROM].GetString().empty() &&
@@ -34,32 +39,64 @@ void TLogic::guiInteraction(sf::RenderWindow &window, sf::Thread &algoThread, si
             }
             break;
         case ButtonActions::CLEAN_GRAPH:
+        {
             mainGraph_.CleanGraph();
+        }
             break;
         case ButtonActions::CLEAR_GRAPH:
+        {
             mainGraph_.ClearGraph();
+        }
             break;
         case ButtonActions::START_DFS:
         {
-            if (!textBoxes_.GetString(TextBoxes::ALGO_DFS_FROM).empty())
-                startV = std::stoi(textBoxes_.GetString(TextBoxes::ALGO_DFS_FROM));
-            if (startV < mainGraph_.GetVertexesSize())
-                algoThread.launch();
+            int startVertex = 0;
+            if (!textBoxes_.GetString(TextBoxes::ALGO_DFS_FROM).empty()) {
+                startVertex = std::stoi(textBoxes_.GetString(TextBoxes::ALGO_DFS_FROM));
+            }
+            if (-1 < startVertex && startVertex < mainGraph_.GetVertexesSize()) {
+                threadPool_.push_task(startDFS, alg_, startVertex, std::ref(mainGraph_));
+            }
+        }
+            break;
+        case ButtonActions::START_BFS:
+        {
+            int startVertex = 0;
+            if (!textBoxes_.GetString(TextBoxes::ALGO_DFS_FROM).empty()) {
+                startVertex = std::stoi(textBoxes_.GetString(TextBoxes::ALGO_DFS_FROM));
+            }
+            if (-1 < startVertex && startVertex < mainGraph_.GetVertexesSize()) {
+                threadPool_.push_task(startBFS, alg_, startVertex, std::ref(mainGraph_));
+            }
         }
             break;
         case ButtonActions::EXIT:
+        {
             window.close();
+        }
+            break;
+        case ButtonActions::GRAPH_COMPLEX:
+        {
+            mainGraph_.ClearGraph();
+            mainGraph_ = graphSamples_.MakeComplex(mainFont_);
+        }
             break;
         case ButtonActions::GRAPH_PNTGON:
+        {
             mainGraph_.ClearGraph();
             mainGraph_ = graphSamples_.MakePentaGon(mainFont_);
+        }
             break;
         case ButtonActions::GRAPH_BNTREE:
+        {
             mainGraph_.ClearGraph();
             mainGraph_ = graphSamples_.MakeBinaryTree(mainFont_);
+        }
             break;
         default:
+        {
             std::cout << "Kek!" << std::endl;
+        }
             break;
     }
 }
@@ -83,7 +120,7 @@ void TLogic::TakeMousePosition(sf::RenderWindow &mainWindow) {
     mousePosition_ = sf::Mouse::getPosition(mainWindow);
 }
 
-void TLogic::ReadInputs(sf::RenderWindow &mainWindow, sf::Thread &algoThread, size_t &startV) {
+void TLogic::ReadInputs(sf::RenderWindow &mainWindow) {
     sf::Event event;
     while (mainWindow.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
@@ -97,7 +134,7 @@ void TLogic::ReadInputs(sf::RenderWindow &mainWindow, sf::Thread &algoThread, si
             // define which button has clicked
             for (auto &button : this->buttons_.buttons_)
                 if (button.Contains(mousePosition_))
-                    guiInteraction(mainWindow, algoThread, startV, button);
+                    guiInteraction(mainWindow, button);
         }
 
         // closed or open

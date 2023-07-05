@@ -6,6 +6,51 @@
 
 class TSample {
 public:
+    TGraph MakeComplex(sf::Font &vertexFont) {
+        TGraph complex;
+        complex.AddVertex(sf::Vector2f(300, 530), vertexFont, 0);
+        complex.AddVertex(sf::Vector2f(300, 230), vertexFont, 1);
+
+        complex.AddVertex(sf::Vector2f(400, 120), vertexFont, 2);
+
+        complex.AddVertex(sf::Vector2f(500, 230), vertexFont, 3);
+        complex.AddVertex(sf::Vector2f(500, 430), vertexFont, 4);
+
+        complex.AddVertex(sf::Vector2f(600, 330), vertexFont, 5);
+        complex.AddVertex(sf::Vector2f(600, 120), vertexFont, 6);
+
+        complex.AddVertex(sf::Vector2f(700, 230), vertexFont, 7);
+        complex.AddVertex(sf::Vector2f(700, 430), vertexFont, 8);
+
+        complex.AddVertex(sf::Vector2f(800, 120), vertexFont, 9);
+
+        complex.AddVertex(sf::Vector2f(900, 230), vertexFont, 10);
+        complex.AddVertex(sf::Vector2f(900, 530), vertexFont, 11);
+
+        complex.AddEdge({0, 1});
+        complex.AddEdge({0, 4});
+        complex.AddEdge({0, 11});
+        complex.AddEdge({1, 2});
+        complex.AddEdge({1, 3});
+        complex.AddEdge({2, 3});
+        complex.AddEdge({2, 6});
+        complex.AddEdge({3, 4});
+        complex.AddEdge({3, 5});
+        complex.AddEdge({3, 6});
+        complex.AddEdge({4, 5});
+        complex.AddEdge({4, 8});
+        complex.AddEdge({5, 7});
+        complex.AddEdge({6, 7});
+        complex.AddEdge({6, 9});
+        complex.AddEdge({7, 8});
+        complex.AddEdge({7, 9});
+        complex.AddEdge({8, 11});
+        complex.AddEdge({9, 10});
+        complex.AddEdge({10, 11});
+
+        return complex;
+    }
+
     TGraph MakePentaGon(sf::Font &vertexFont) {
         TGraph pentaGon;
         pentaGon.AddVertex(sf::Vector2f(600, 200), vertexFont, 0);

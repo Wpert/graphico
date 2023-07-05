@@ -22,8 +22,8 @@ void TGraph::RenderEdge(TEdge edge, sf::RenderWindow &window) {
     sf::Vector2f to_Position = this->vertexes_[edge.to_].GetCenterPosition();
 
     sf::Vertex line[] = {
-            sf::Vertex(from_Position, defaultEdgeColor),
-            sf::Vertex(to_Position, defaultEdgeColor)
+            sf::Vertex(from_Position, edge.color_),
+            sf::Vertex(to_Position, edge.color_)
     };
 
     window.draw(line, 3, sf::Lines);
@@ -42,6 +42,13 @@ void TGraph::RenderGraph(sf::Vector2i &mousePosition, sf::RenderWindow &window) 
 
 void TGraph::changeVertexColor(size_t vertexIndex, sf::Color colorValue) {
     this->vertexes_[vertexIndex].changeOutlineColor(colorValue);
+}
+
+void TGraph::changeEdgeColor(size_t from, size_t to, sf::Color colorValue) {
+    auto edge = std::find(edgeList_.begin(), edgeList_.end(), TEdge(from, to));
+
+    if (edge != edgeList_.end())
+        edge->color_ = colorValue;
 }
 
 void TGraph::AreaCollisions(sf::RectangleShape &area) {
@@ -68,6 +75,8 @@ void TGraph::CleanGraph() {
     for (size_t i = 0; i < this->vertexes_.size(); ++i) {
         this->changeVertexColor(i, defaultOutlineColor);
     }
+    for (auto &edge : edgeList_)
+        edge.color_ = defaultEdgeColor;
 }
 
 void TGraph::ClearGraph() {
