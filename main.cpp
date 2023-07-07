@@ -35,22 +35,16 @@ int main() {
     font.loadFromFile(dirPath + "resources/calibri.ttf");
 
     // objects
-    TLogic mainK(font);
-
-    std::thread takeMousePos([&](){
-        while (mainWindow.isOpen())
-            mainK.TakeMousePosition(mainWindow);
-    });
+    TLogic mainObjects(font);
 
     // main cycle
     while (mainWindow.isOpen()) {
+        mainObjects.TakeMousePosition(mainWindow);
         // user devices
-        mainK.ReadInputs(mainWindow);
+        mainObjects.ReadInputs(mainWindow);
         // rendering
-        mainK.Render(mainWindow);
+        mainObjects.Render(mainWindow);
     }
 
-    takeMousePos.join();
-    std::cout << "my work here is done." << std::endl;
     return 0;
 }
